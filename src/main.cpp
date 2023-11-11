@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     std::unique_ptr<ApiGetQuery> getQuery;
     getQuery.reset();
     getQuery = factory.CreateApiGetter(EapiGetQuerryType::EApiGetBenefits);
-    getQuery.reset();
+    getQuery->LaunchGetQuery();
     getQuery.reset();
     getQuery = factory.CreateApiGetter(EapiGetQuerryType::EApiGetQueue);
     getQuery.reset();

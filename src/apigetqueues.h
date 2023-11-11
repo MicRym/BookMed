@@ -7,6 +7,9 @@ class ApiGetQueues : public ApiGetQuery
 {
 public:
     ApiGetQueues();
+    virtual void LaunchGetQuery() {};
+private:
+    virtual bool ValidateParameterInMap() {return true;};
 };
 
 #endif // APIGETQUEUES_H

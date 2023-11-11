@@ -7,6 +7,9 @@ class ApiGetBenefits : public ApiGetQuery
 {
 public:
     ApiGetBenefits();
+    virtual void LaunchGetQuery();
+private:
+    virtual bool ValidateParameterInMap();
 };
 
 #endif // APIGETBENEFITS_H

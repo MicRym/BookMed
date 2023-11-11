@@ -7,6 +7,9 @@ class ApiGetProviders : public ApiGetQuery
 {
 public:
     ApiGetProviders();
+    virtual void LaunchGetQuery() {};
+private:
+    virtual bool ValidateParameterInMap() {return true;};
 };
 
 #endif // APIGETPROVIDERS_H
