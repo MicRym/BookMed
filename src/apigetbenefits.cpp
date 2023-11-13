@@ -4,19 +4,12 @@
 ApiGetBenefits::ApiGetBenefits()
 {
     qDebug() << "Test ApiGetBenefits";
-    SetApiUrl("https://api.nfz.gov.pl/app-itl-api/benefits?");
-    parameterMap.insert({"page","1"});
-    parameterMap.insert({"limit","10"});
-    parameterMap.insert({"format","json"});
-    parameterMap.insert({"name","poradnia"});
-    parameterMap.insert({"api-version","1.3"});
-    urlRequest = apiUrl;
 }
 void ApiGetBenefits::LaunchGetQuery()
 {
     QNetworkAccessManager manager;
+    InitQuery();
     FillQueryFromMap();
-
     urlRequest.setQuery(query);
     qDebug()<<urlRequest;
     QNetworkRequest request(urlRequest);
@@ -32,4 +25,8 @@ void ApiGetBenefits::LaunchGetQuery()
 bool ApiGetBenefits::ValidateParameterInMap()
 {
     return true;
+}
+void ApiGetBenefits::InitQuery()
+{
+    urlRequest = ApiGetBenefits::apiUrl;
 }

@@ -15,6 +15,7 @@
 #include "src/apigettersfactory.h"
 #include <cstdio>
 #include <memory>
+typedef std::pair<std::string, std::string> ApiGetParameter;
 int main(int argc, char *argv[])
 {
     set_qt_environment();
@@ -37,11 +38,24 @@ int main(int argc, char *argv[])
     std::unique_ptr<ApiGetQuery> getQuery;
     getQuery.reset();
     getQuery = factory.CreateApiGetter(EapiGetQuerryType::EApiGetBenefits);
+    getQuery->AddParameterToMap(ApiGetParameter{"page","1"});
+    getQuery->AddParameterToMap(ApiGetParameter{"limit","10"});
+    getQuery->AddParameterToMap(ApiGetParameter{"format","json"});
+    getQuery->AddParameterToMap(ApiGetParameter{"name","poradnia"});
+    getQuery->AddParameterToMap(ApiGetParameter{"api-version","1.3"});
     getQuery->LaunchGetQuery();
     getQuery.reset();
+
     getQuery = factory.CreateApiGetter(EapiGetQuerryType::EApiGetQueue);
     getQuery.reset();
     getQuery = factory.CreateApiGetter(EapiGetQuerryType::EApiGetProviders);
+    getQuery->AddParameterToMap(ApiGetParameter{"page","1"});
+    getQuery->AddParameterToMap(ApiGetParameter{"limit","10"});
+    getQuery->AddParameterToMap(ApiGetParameter{"format","json"});
+    getQuery->AddParameterToMap(ApiGetParameter{"name","Audiolog"});
+    getQuery->AddParameterToMap(ApiGetParameter{"province","15"});
+    getQuery->AddParameterToMap(ApiGetParameter{"api-version","1.3"});
+    getQuery->LaunchGetQuery();
     getQuery.reset();
     QQmlApplicationEngine engine;
     const QUrl url(u"qrc:Main/main.qml"_qs);

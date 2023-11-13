@@ -7,9 +7,13 @@ class ApiGetProviders : public ApiGetQuery
 {
 public:
     ApiGetProviders();
-    virtual void LaunchGetQuery() {};
+    virtual void LaunchGetQuery();
+    virtual void InitQuery();
+    inline static const QUrl apiUrl{"https://api.nfz.gov.pl/app-itl-api/providers?"};
 private:
-    virtual bool ValidateParameterInMap() {return true;};
+    virtual bool ValidateParameterInMap();
+
+    QUrl urlRequest;
 };
 
 #endif // APIGETPROVIDERS_H
