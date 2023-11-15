@@ -47,6 +47,15 @@ int main(int argc, char *argv[])
     getQuery.reset();
 
     getQuery = factory.CreateApiGetter(EapiGetQuerryType::EApiGetQueue);
+    getQuery->AddParameterToMap(ApiGetParameter{"page","1"});
+    getQuery->AddParameterToMap(ApiGetParameter{"limit","10"});
+    getQuery->AddParameterToMap(ApiGetParameter{"foramt","json"});
+    getQuery->AddParameterToMap(ApiGetParameter{"case","1"});
+    getQuery->AddParameterToMap(ApiGetParameter{"province","15"});
+    getQuery->AddParameterToMap(ApiGetParameter{"benefit","PORADANIA AUDIOLOGICZNA"});
+    getQuery->AddParameterToMap(ApiGetParameter{"benefitForChildren","false"});
+    getQuery->AddParameterToMap(ApiGetParameter{"api-version","1.3"});
+    getQuery->LaunchGetQuery();
     getQuery.reset();
     getQuery = factory.CreateApiGetter(EapiGetQuerryType::EApiGetProviders);
     getQuery->AddParameterToMap(ApiGetParameter{"page","1"});
