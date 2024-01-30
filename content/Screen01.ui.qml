@@ -16,56 +16,110 @@ Rectangle {
 
     color: Constants.backgroundColor
 
-    Button {
-        id: button
-        text: qsTr("Press me")
-        anchors.verticalCenter: parent.verticalCenter
-        checkable: true
-        anchors.horizontalCenter: parent.horizontalCenter
+    ComboBox {
+        id: comboBox1
+        x: 571
+        y: 248
+        width: 290
+        height: 68
+        editable: false
+        displayText: "Województwo"
+    }
 
-        Connections {
-            target: button
-            onClicked: animation.start()
+    TextEdit {
+        id: textEdit
+        x: 571
+        y: 136
+        width: 290
+        height: 41
+        text: qsTr("Nazwa Świadczenia")
+        font.pixelSize: 12
+    }
+
+    Switch {
+        id: switch1
+        x: 571
+        y: 336
+        text: qsTr("Świadczenie dla dzieci")
+    }
+
+    Switch {
+        id: switch2
+        x: 571
+        y: 395
+        text: qsTr("Przypadeek pilny - CITO")
+    }
+
+    ListView {
+        id: listView
+        x: 967
+        y: 136
+        width: 389
+        height: 384
+        model: ListModel {
+            ListElement {
+                name: "Grey"
+                colorCode: "grey"
+            }
+
+            ListElement {
+                name: "Red"
+                colorCode: "red"
+            }
+
+            ListElement {
+                name: "Blue"
+                colorCode: "blue"
+            }
+
+            ListElement {
+                name: "Green"
+                colorCode: "green"
+            }
+        }
+        delegate: Item {
+            x: 5
+            width: 80
+            height: 40
+            Row {
+                id: row1
+                spacing: 10
+                Rectangle {
+                    width: 40
+                    height: 40
+                    color: colorCode
+                }
+
+                Text {
+                    text: name
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.bold: true
+                }
+            }
         }
     }
 
-    Text {
-        id: label
-        text: qsTr("Hello BookMed")
-        anchors.top: button.bottom
-        font.family: Constants.font.family
-        anchors.topMargin: 45
-        anchors.horizontalCenter: parent.horizontalCenter
+    Button {
+        id: button
+        x: 571
+        y: 468
+        width: 290
+        height: 52
+        text: qsTr("Sprawdź Termin")
+    }
 
-        SequentialAnimation {
-            id: animation
-
-            ColorAnimation {
-                id: colorAnimation1
-                target: rectangle
-                property: "color"
-                to: "#2294c6"
-                from: Constants.backgroundColor
-            }
-
-            ColorAnimation {
-                id: colorAnimation2
-                target: rectangle
-                property: "color"
-                to: Constants.backgroundColor
-                from: "#2294c6"
-            }
-        }
+    TextEdit {
+        id: textEdit1
+        x: 571
+        y: 183
+        width: 290
+        height: 23
+        text: qsTr("Miejscowość")
+        font.pixelSize: 12
     }
     states: [
         State {
             name: "clicked"
-            when: button.checked
-
-            PropertyChanges {
-                target: label
-                text: qsTr("Button Checked")
-            }
         }
     ]
 }
